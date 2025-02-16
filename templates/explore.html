@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JS (jQuery and Popper.js are also required) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <title>StudentSphere-Explore</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary menubar">
+    <div class="container-fluid navdiv">
+
+      <a class="navbar-brand">𝑆𝑡𝑢𝑑𝑒𝑛𝑡𝑆𝑝ℎ𝑒𝑟𝑒</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <!-- <img src="/assests/img/logo1.jpg" alt="" height="25" style="margin-top: 20px;"> -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" role="tab"
+              aria-controls="pills-home" aria-selected="false" href="/home">Home</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" type="a"
+              role="tab" aria-controls="pills-about" aria-selected="false" href="/about">About Us!</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-project-tab" data-bs-toggle="pill" data-bs-target="#pills-project" type="a"
+              role="tab" aria-controls="pills-project" aria-selected="false" href="/project">Analysis</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-quiz-tab" data-bs-toggle="pill" data-bs-target="#pills-quiz" type="a"
+              role="tab" aria-controls="pills-quiz" aria-selected="false" href="/quiz">Quiz</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="pills-forum-tab" data-bs-toggle="pill" data-bs-target="#pills-forum" type="a"
+              role="tab" aria-controls="pills-forum" aria-selected="true" href="/explore">Explore</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="a"
+              role="tab" aria-controls="pills-contact" aria-selected="false" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+    <span class="">
+      {% if session.get('username') %}
+          <span class="logdisplay">
+              <div class="logname" href="#">Welcome, {{ session['username'] }}!</div>
+          </span>
+      {% else %}
+          <span class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </span>
+      {% endif %}
+        </span>
+    <button class="navbutton">
+
+
+      <a href="/" class="logout"><i class="bx bx-log-out-circle"></i>Logout</a>
+    </button>
+   
+  </nav>
+
+
+  <!--BODY  -->
+  <div class="container cont text-center">
+    <h2 style="font-style: italic;">Explore Our Mindful Games</h2><br>
+    <p>
+      Welcome to the Gaming Zone of Studentsphere, where entertainment meets mental well-being! We’ve carefully
+      curated a collection of games designed to not only entertain but also to nurture your mental health.
+      Whether you need a break from studies or a fun way to de-stress, our games are here to help.
+    </p>
+  
+    <div class="container d-flex flex-wrap justify-content-center">
+      <div class="card m-4 explorecard" style="width: 30rem; min-height: 30rem;">
+        <img src="/static/images/explore2.jpg" class="card-img-top" alt="Memory game image" style="height: 12rem; object-fit: cover;">
+        <div class="card-body " style="height: 1000;">
+          <h5 class="card-title">Memory Game</h5>
+          <p class="card-text">Challenge your mind and improve focus by matching pairs of cards in the shortest time possible. Sharpen your memory and attention with this engaging card-matching game.</p>
+          <a type="button" data-toggle="modal" data-target="#myModal2" class="explorebtn">Let's Start!</a>
+        </div>
+      </div>
+  
+      <div class="card m-4 explorecard" style="width: 30rem; min-height: 30rem;">
+        <img src="/static/images/explore44.jpg" class="card-img-top" alt="Mood board image" style="height: 12rem; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Mood Board ft. Inside Out</h5>
+          <p class="card-text">Join Riley on a colorful journey through her emotions! Create a visual reflection of your feelings by arranging the core emotions: Joy, Sadness, Anger, Fear, and Anxiety. Design your own mood board and gain insights into how these emotions shape your experiences.</p>
+          <a type="button" data-toggle="modal" data-target="#myModal3" class="explorebtn">Let's Start!</a>
+        </div>
+      </div>
+  
+      <div class="card m-4 explorecard" style="width: 30rem; min-height: 30rem;">
+        <img src="/static/images/explore4.jpg" class="card-img-top" alt="Pop the bubbles image" style="height: 12rem; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Pop the Bubbles</h5>
+          <p class="card-text">A fun and engaging stress-relief game designed to brighten your day! Pop as many bubbles as you can within the time limit, and watch your worries float away. Take a quick break, focus on the present, and boost your mood!</p>
+          <a type="button" data-toggle="modal" data-target="#myModal4" class="explorebtn">Let's Start!</a>
+        </div>
+      </div>
+  
+      <div class="card m-4 explorecard" style="width: 30rem; min-height: 30rem;">
+        <img src="/static/images/explore11.jpg" class="card-img-top" alt="Jigsaw puzzle game image" style="height: 12rem; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Jigsaw Puzzle Game</h5>
+          <p class="card-text">Welcome to Jigsaw Puzzle Adventure! Get ready to challenge your mind while having fun. Put together beautiful images piece by piece, and discover the joy of solving puzzles.</p>
+          <a type="button" data-toggle="modal" data-target="#myModal5" class="explorebtn">Let's Start!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+        <!-- MODALs -->
+<!-- OLD Modal structure - QUIZ-->
+<!-- <div class="modal fade" id="myModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class=" modal-dialog exploremodal">
+    <div class="exploremodal modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Express Your Emotions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>1. Understanding the Importance of Sharing</b></p>
+
+   <p>Opening up about your mental state is crucial for emotional health. It helps you process your feelings, reduces stress, and prevents the buildup of negative emotions. Sharing also allows others to offer support, advice, and perspective, which can be incredibly comforting.</p>
+        <p><b>2. Choosing the Right Person to Talk To</b></p>
+        
+        <p>Identify someone you trust, such as a friend, family member, or counselor. Choose someone who has shown empathy, listens without judgment, and respects your privacy.</p>
+       <P><b> 3. Overcoming the Fear of Judgment</b></P>
+        
+        <p>It's common to fear judgment when sharing personal feelings. Remember that everyone experiences difficulties, and it's okay to ask for help. People who care about you will want to support you, not judge you.</p>
+       <p><b> 4. Starting the Conversation</b></p>
+        
+        <p>Begin by finding a comfortable setting. You can start with a simple statement like, "I've been feeling a bit overwhelmed lately, and I need someone to talk to." Be honest about your feelings and try to be as clear as possible about what you're experiencing.</p>
+       <p><b> 5. Setting Boundaries</b></p>
+        
+       <p> It's important to communicate your needs and boundaries. Let the person know if you need advice, just someone to listen, or perhaps some space after the conversation. This will help them understand how to best support you.</p>
+       <p><b> 6. The Power of Listening</b></p>
+        
+       <p> While it's important to express yourself, it's equally important to listen when others share their feelings. This mutual exchange strengthens trust and fosters a supportive relationship.</p>
+       <p><b> 7. Seeking Professional Help</b></p>
+        
+       <p> Sometimes, opening up to a professional, like a therapist or counselor, is the best step. They are trained to help you navigate your feelings and offer strategies to manage your mental health effectively.</p>
+      </div>
+      <div class="modal-footer">
+      
+        <button type="button" class="explorebtn" data-toggle="modal" data-target="#myModal1" data-dismiss="modal">Quiz Time!</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- NEW MODAL INTO MODAL - QUIZ -->
+
+<!-- <div class="modal fade innermodal" id="myModal1" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable exploremodal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Express Your Emotions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body1">
+        <form id="quizForm" action="/quiz" method="POST">
+          <div class="field">
+            <label for="q1">Question 1: Why is it important to share your mental state with others?</label><br>
+            <input type="radio" name="q1" value="Happy" required> To avoid being judged<br>
+            <input type="radio" name="q1" value="Sad" required> To process your feelings and reduce stress<br>
+            <input type="radio" name="q1" value="Anxious" required> To keep your emotions to yourself<br>
+            <input type="radio" name="q1" value="Neutral" required> To impress others with your problems<br><br>
+          </div>
+          <div class="field">
+            <label for="q2">Question 2: What should you consider when choosing someone to talk to about your mental health?</label><br>
+            <input type="radio" name="q2" value="Yes, very supported" required> Their popularity<br>
+            <input type="radio" name="q2" value="Somewhat supported" required> Somewhat supported<br>
+            <input type="radio" name="q2" value="Not very supported" required> Not very supported<br>
+            <input type="radio" name="q2" value="Not at all supported" required> Not at all supported<br><br>
+          </div>
+          <div class="field">
+            <label for="q3">Question 3: Are you satisfied with your current workload?</label><br>
+            <input type="radio" name="q3" value="Yes, it's manageable" required> Yes, it's manageable<br>
+            <input type="radio" name="q3" value="No, it's too much" required> No, it's too much<br>
+            <input type="radio" name="q3" value="No, it's too little" required> No, it's too little<br>
+            <input type="radio" name="q3" value="I'm unsure" required> I'm unsure<br><br>
+          </div>
+          <div class="field">
+            <label for="q4">Question 4: How would you describe your sleep quality last night?</label><br>
+            <input type="radio" name="q4" value="Excellent" required> Excellent<br>
+            <input type="radio" name="q4" value="Good" required> Good<br>
+            <input type="radio" name="q4" value="Fair" required> Fair<br>
+            <input type="radio" name="q4" value="Poor" required> Poor<br><br>
+          </div>
+          <div class="field">
+            <label for="q5">Question 5: Do you feel motivated to work/study today?</label><br>
+            <input type="radio" name="q5" value="Yes, very motivated" required> Yes, very motivated<br>
+            <input type="radio" name="q5" value="Somewhat motivated" required> Somewhat motivated<br>
+            <input type="radio" name="q5" value="Not very motivated" required> Not very motivated<br>
+            <input type="radio" name="q5" value="Not at all motivated" required> Not at all motivated<br><br>
+          </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="/templates/explore.html"><button type="button" class="explorebtn">Submit!</button></a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!--  MEMORY GAME modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class=" modal-dialog exploremodal">
+    <div class="exploremodal modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Challenge your memory while learning about mental health!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Memory card -->
+
+<div class="mem">
+  <h2>Memory Game: Boost Your Brain Power!</h2>
+ <p>Our Memory Game is designed to test your concentration and improve your memory by matching tiles featuring mental health images. The objective is simple: flip over two tiles at a time and try to find the matching pairs. The game continues until all the pairs are found. It's a fun, engaging way to sharpen your cognitive skills while raising awareness about mental health concepts.
+</p>
+<h5>How it works:</h5>
+
+    <li>Start the game and you will see a set of face-down tiles with hidden images.</li>
+    <li>Click on two tiles to flip them over and reveal the images.</li>
+    <li>If the two images match, they will stay face-up. If not, they will flip back over after a brief moment.</li>
+    <li>Continue matching pairs until all tiles are uncovered. </li>
+    <li>Try to finish the game with the fewest moves and the quickest time!  </li><br>
+
+<h3>Play now to boost your mental fitness!</h3>
+</div>
+  <div id="game-board"></div>
+  <div id="score">Score: 0</div>
+  <div id="timer">
+    <span id="timer-icon">⏳</span>
+    <span id="timer-text">Time: 0 sec</span>
+  </div>
+
+  <button id="save-points-btn">Save Points</button>
+  <button id="start-btn">Start Game</button>
+
+
+      </div>
+    </div>
+  </div>
+</div>        
+
+  <!-- mood board MODAL -->
+<div class="modal fade" id="myModal3" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class=" modal-dialog exploremodal">
+    <div class="exploremodal modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Translate feelings into colors and images!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">    
+        <div class="container mem">
+          <h2 class="text-center">Create Your Inside Out Mood Board</h2>
+<p>The goal of this activity is to help you explore and articulate your emotions, inspired by Riley's journey in "Inside Out." This interactive experience encourages self-awareness and emotional expression by inviting you to connect your current feelings with visuals, colors, and design elements that represent Joy, Sadness, Anger, Fear, and Anxiousness.</p>
+<h5>Steps to Play:</h5>
+<li>Begin by selecting your current emotion (e.g., Joyful, Sad, Angry, Anxious, Scared) from the emotions represented in the film.</li>
+<li>Drag and drop theimages that resonate with your chosen feelings.</li>
+<li>Customize the layout of your mood board to reflect your personal style.</li>
+<li>Save your creation and, if you wish, share it with friends and family to inspire discussions about emotions.</li><br>
+<h4><b>Dive In! Let Your Emotions Shine Through</b></h4>
+
+
+
+          <!-- Mood Board where users drop items -->
+          <div class="mood-board" id="moodBoard">
+              <div class="grid-item"></div>
+              <div class="grid-item"></div>
+              <div class="grid-item"></div>
+             
+          </div>
+          
+          <!-- Items that users can drag and drop -->
+          <div class="items-list" id="itemsList">
+            <div class="draggable" draggable="true" id="joy" style="background-image: url('/static/images/joy.jpg'); background-size: cover;"> </div>
+            <div class="draggable" draggable="true" id="sad" style="background-image: url('/static/images/sadness.jpg'); background-size: cover;"> </div>
+            <div class="draggable" draggable="true" id="angry" style="background-image: url('/static/images/anger.jpg'); background-size: cover;"> </div>
+            <div class="draggable" draggable="true" id="anxious" style="background-image: url('/static/images/anxiety.jpg'); background-size: cover;"> </div>
+            <div class="draggable" draggable="true" id="scared" style="background-image: url('/static/images/fear.jpg'); background-size: cover;"></div>
+           
+        </div>
+          
+          <button id="clear-board">Clear Mood Board</button>
+          <button id="save-board">Save Mood Board</button>
+          
+          <div id="message"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+     
+
+
+<!-- JIGSAW MODAL -->
+<div class="modal fade" id="myModal5" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class=" modal-dialog exploremodal">
+    <div class="exploremodal modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Express Your Emotions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <h2>Jigsaw Puzzle Game</h2>
+        <div id="puzzle-container" style="display: grid; grid-template-columns: repeat(4, 100px); grid-template-rows: repeat(4, 100px); gap: 2px; margin-bottom: 20px; margin-left: 300px;"></div>
+        <div class="button-group">
+          <button id="shuffle-btn" class="btn btn-primary">Shuffle</button>
+          <button id="next-btn" class="btn btn-info">Next Image</button>
+          <button type="button" class="btn btn-secondary" style="margin-left: 700px;" data-dismiss="modal">Close</button>
+        </div>
+        <div id="congratulations-message" style="display: none; text-align: center; font-size: 24px; color: green; margin-top: 20px;">
+          <strong>CONGRATULATIONS!</strong>
+        </div>
+      </div>
+      <div class="modal-footer">
+       
+      </div>
+    </div>
+  </div>
+
+
+<!-- BUBBLES MODAL -->
+
+<div class="modal fade" id="myModal4" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class=" modal-dialog exploremodal">
+    <div class="exploremodal modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pop away your stress - one bubble at a time!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mem">
+        <h2>Bubble Popping Game!</h2>
+        <p>The bubble popping game is a stress-relief tool designed to provide a quick mental break through simple, engaging activities. It involves popping virtual bubbles as they float across the screen, providing players with an outlet to focus their attention and relieve stress. It’s an ideal tool for students and individuals seeking a momentary distraction from their busy schedules.</p>
+        <h5>Steps to Play the Game</h5>
+        <li>Click the "Let’s Start!" button on the game card.</li>
+        <li>Once the game is launched, you will see a timer and a score counter displayed at the top corners of the game area.</li>
+        <li>Bubbles of various colors will start floating from the bottom to the top of the modal container.</li>
+        <li>Use your mouse or finger (on touchscreen devices) to click or tap on the bubbles as they appear.</li>
+        <li>Each time you pop a bubble, you will earn a point, and the score counter will update accordingly.</li>
+        <li>Try to pop as many bubbles as possible before the time runs out!</li>
+      </div>
+      <div id="start-game-container" style="text-align: center; margin-top: 20px; ">
+        <button id="start-game-button" class="btn btn-primary">Start Game</button>
+    </div>
+        <div id="bubbleContainer" style="position: relative; height: 400px; overflow: hidden; border: 1px solid #ddd;">
+          <!-- Game elements go here -->
+          <div id="timer" style="font-weight: bold; font-size: 24px; position: absolute; top: 10px; right: 10px;">
+              ⏳ <span id="timeLeft">30</span>s
+          </div>
+         
+      </div>
+      <div id="game-over" style="display: none; text-align: center; margin-top: 20px;">
+          <h3>Game Over!</h3>
+          <p>Your final score is: <span id="final-score"></span></p>
+          <p id="final-message"></p>
+      </div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  </div>
+      </div>
+    
+    </div>
+  </div>
+  <audio id="pop-sound" src="/static/sound/pop.mp3"></audio>
+
+
+  <!-- MEMORY GAME SCRIPT -->
+
+<script>
+  const cardsArray = [
+      '/static/images/memorygame1.jpg', 
+      '/static/images/memorygame1.jpg', 
+      '/static/images/memorygame2.jpg', 
+      '/static/images/memorygame2.jpg', 
+      '/static/images/memorygame3.jpg', 
+      '/static/images/memorygame3.jpg', 
+      '/static/images/memorygame4.jpg', 
+      '/static/images/memorygame4.jpg', 
+      '/static/images/memorygame5.jpg', 
+      '/static/images/memorygame5.jpg', 
+      '/static/images/memorygame6.jpg', 
+      '/static/images/memorygame6.jpg', 
+      '/static/images/memorygame7.jpg', 
+      '/static/images/memorygame7.jpg', 
+      '/static/images/memorygame8.jpg',
+      '/static/images/memorygame8.jpg'
+  ];
+  
+  let score = 0;
+  let hasFlippedCard = false;
+  let lockBoard = false;
+  let firstCard, secondCard;
+  let startTime, endTime;
+  let timerInterval;
+  
+  const gameBoard = document.getElementById('game-board');
+  const scoreDisplay = document.getElementById('score');
+  const savePointsBtn = document.getElementById('save-points-btn');
+  const timerIcon = document.getElementById('timer-icon');
+  const timerText = document.getElementById('timer-text');
+  const startBtn = document.getElementById('start-btn');
+  
+  // Shuffle the cards
+  function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+  }
+  
+  // Generate card elements dynamically with images
+  function createCards() {
+      const shuffledCards = shuffle([...cardsArray]);
+      shuffledCards.forEach(cardValue => {
+          const card = document.createElement('div');
+          card.classList.add('card');
+          card.innerHTML = `
+              <div class="card-inner">
+                  <div class="card-side front"></div>
+                  <div class="card-side back">
+                      <img src="${cardValue}" alt="Card Image" style="width:100%; height:auto;">
+                  </div>
+              </div>
+          `;
+          gameBoard.appendChild(card);
+  
+          // Add event listener to flip the card
+          card.addEventListener('click', flipCard);
+      });
+  }
+  
+  // Start the timer
+  function startTimer() {
+      startTime = new Date();
+      timerInterval = setInterval(() => {
+          const elapsedTime = Math.floor((new Date() - startTime) / 1000);
+          timerText.textContent = `Time: ${elapsedTime} sec`;
+      }, 1000);
+  }
+  
+  // Stop the timer and record the time
+  function stopTimer() {
+      if (score < 80) { 
+          alert("Your score is too low. You must reach a score of 80 to stop the timer.");
+          return; 
+      }
+  
+      clearInterval(timerInterval);
+      endTime = new Date();
+      const totalTime = Math.floor((endTime - startTime) / 1000);
+      alert(`Timer stopped! You took ${totalTime} seconds.`);
+      displayPerformanceMessage(totalTime);
+      startBtn.textContent = 'Start Game';
+  }
+  
+  // Flip the card
+  function flipCard() {
+      if (lockBoard || this === firstCard) return;
+  
+      this.classList.add('flipped');
+  
+      if (!hasFlippedCard) {
+          hasFlippedCard = true;
+          firstCard = this;
+      } else {
+          secondCard = this;
+          checkForMatch();
+      }
+  }
+  
+  // Check if the two flipped cards match
+  function checkForMatch() {
+      const isMatch = firstCard.querySelector('.back img').src === secondCard.querySelector('.back img').src;
+      if (isMatch) {
+          disableCards();
+          score += 10;
+          scoreDisplay.textContent = `Score: ${score}`;
+          checkIfGameOver();
+      } else {
+          unflipCards();
+      }
+  }
+  
+  // Disable the matched cards
+  function disableCards() {
+      firstCard.removeEventListener('click', flipCard);
+      secondCard.removeEventListener('click', flipCard);
+      firstCard = null;
+      secondCard = null;
+      hasFlippedCard = false;
+  }
+  
+  // Unflip the unmatched cards
+  function unflipCards() {
+      lockBoard = true;
+      setTimeout(() => {
+          firstCard.classList.remove('flipped');
+          secondCard.classList.remove('flipped');
+          firstCard = null;
+          secondCard = null;
+          hasFlippedCard = false;
+          lockBoard = false;
+      }, 1000);
+  }
+  
+  // Check if the game is over
+  function checkIfGameOver() {
+      const allCards = document.querySelectorAll('.card');
+      const allMatched = Array.from(allCards).every(card => card.classList.contains('flipped'));
+      if (allMatched) {
+          alert('All cards matched! Press "Stop Timer" to finish.');
+          startBtn.textContent = 'Stop Timer';
+          startBtn.style.display = 'block'; // Show the Stop Timer button after the game is over
+      }
+  }
+  
+  // Display a performance message based on time taken
+  function displayPerformanceMessage(totalTime) {
+      let message;
+      if (totalTime <= 10) {
+          message = "Excellent! Your speed and memory skills are outstanding!";
+      } else if (totalTime > 10 && totalTime <= 20) {
+          message = "Well done! You’re quick and efficient in matching patterns.";
+      } else if (totalTime > 20 && totalTime <= 30) {
+          message = "Great job! With a little more focus, you can be even faster!";
+      } else if (totalTime > 30 && totalTime <= 40) {
+          message = "Good effort! Steady progress and determination make a difference.";
+      } else if (totalTime > 40 && totalTime <= 50) {
+          message = "Nice work! With some more practice, you’ll master this game in no time!";
+      } else if (totalTime > 50 && totalTime <= 60) {
+          message = "Keep it up! Every try builds stronger cognitive skills!";
+      } else if (totalTime > 60 && totalTime <= 70) {
+          message = "Don’t give up! Practice makes perfect, and you’re on the right track!";
+      } else {
+          message = "Stay motivated! The more you play, the better you’ll get. Keep challenging yourself!";
+      }
+      alert(message);
+  }
+  
+  // Initialize the game when "Start Game" button is clicked
+  startBtn.addEventListener('click', () => {
+      if (startBtn.textContent === 'Start Game') {
+          // Clear the game board and reset variables
+          gameBoard.innerHTML = '';
+          score = 0;
+          hasFlippedCard = false;
+          lockBoard = false;
+          firstCard = null;
+          secondCard = null;
+          scoreDisplay.textContent = `Score: 0`;
+          savePointsBtn.style.display = 'none';
+          timerText.textContent = `Time: 0 sec`;
+  
+          // Create new cards and start the timer
+          createCards();
+          startTimer();
+          startBtn.textContent = 'Stop Timer';
+      } else {
+          stopTimer();
+      }
+  });
+  </script>
+  
+
+ <!-- MOOD BOARD SCRIPT -->
+ <script>
+  const draggables = document.querySelectorAll('.draggable');
+  const gridItems = document.querySelectorAll('.grid-item');
+  const itemsList = document.getElementById('itemsList');
+
+  // Store the initial positions of the items for resetting
+  const originalItems = Array.from(draggables).map(item => item.cloneNode(true));
+
+  // Add dragstart and dragend event listeners to each draggable item
+  draggables.forEach(draggable => {
+      draggable.addEventListener('dragstart', () => {
+          draggable.classList.add('dragging');
+      });
+
+      draggable.addEventListener('dragend', () => {
+          draggable.classList.remove('dragging');
+      });
+  });
+
+  // Add dragover and drop event listeners to each grid item (mood board spaces)
+  gridItems.forEach(item => {
+      item.addEventListener('dragover', e => {
+          e.preventDefault(); // Prevent default to allow drop
+      });
+
+      item.addEventListener('drop', e => {
+          const draggingElement = document.querySelector('.dragging');
+          if (draggingElement) {
+              item.appendChild(draggingElement);
+          }
+      });
+  });
+
+  // Clear Mood Board and reset items to original position
+  document.getElementById('clear-board').addEventListener('click', () => {
+      // Clear the content of each grid item
+      gridItems.forEach(item => {
+          item.innerHTML = '';
+      });
+
+      // Remove all children from itemsList and add back the original items
+      itemsList.innerHTML = '';
+      originalItems.forEach(item => {
+          itemsList.appendChild(item.cloneNode(true));
+      });
+
+      // Re-attach drag event listeners to reset items
+      const newDraggables = document.querySelectorAll('.draggable');
+      newDraggables.forEach(draggable => {
+          draggable.addEventListener('dragstart', () => {
+              draggable.classList.add('dragging');
+          });
+
+          draggable.addEventListener('dragend', () => {
+              draggable.classList.remove('dragging');
+          });
+      });
+
+      document.getElementById('message').innerText = 'Mood Board cleared! Start again.';
+  });
+
+  // Save Mood Board and display a message based on mood combinations
+  document.getElementById('save-board').addEventListener('click', () => {
+      const moodBoardItems = [];
+      gridItems.forEach(item => {
+          if (item.children.length > 0) {
+              moodBoardItems.push(item.children[0].id); // Store IDs instead of innerText or backgroundColor
+          }
+      });
+
+      // Generate message based on mood IDs
+      let message = "Your mood board has been saved! ";
+      
+      // Two-mood combinations
+if (moodBoardItems.includes("joy") && moodBoardItems.includes("scared")) {
+    message += "You are courageous and ready to face your fears!";
+} else if (moodBoardItems.includes("sad") && moodBoardItems.includes("anxious")) {
+    message += "It's okay to feel overwhelmed; take a moment to breathe.";
+} else if (moodBoardItems.includes("angry") && moodBoardItems.includes("sad")) {
+    message += "It's a tough day, but remember to express your feelings.";
+} else if (moodBoardItems.includes("angry") && moodBoardItems.includes("anxious")) {
+    message += "Acknowledge your feelings; it's okay to seek peace.";
+} else if (moodBoardItems.includes("joy") && moodBoardItems.includes("sad")) {
+    message += "Even in sadness, your joy shines through!";
+} else if (moodBoardItems.includes("joy") && moodBoardItems.includes("angry")) {
+    message += "Your energy can help transform anger into positivity!";
+} else if (moodBoardItems.includes("joy") && moodBoardItems.includes("anxious")) {
+    message += "Your happiness can be a light in moments of anxiety!";
+} else if (moodBoardItems.includes("scared") && moodBoardItems.includes("sad")) {
+    message += "It's okay to be scared; acknowledge your feelings.";
+} else if (moodBoardItems.includes("scared") && moodBoardItems.includes("anxious")) {
+    message += "Take a deep breath; you are safe in this moment.";
+} else if (moodBoardItems.includes("scared") && moodBoardItems.includes("angry")) {
+    message += "Your feelings are valid; find a healthy outlet for them.";
+
+// Single mood combinations
+} else if (moodBoardItems.includes("joy")) {
+    message += "Embrace the joy within you; it’s contagious!";
+} else if (moodBoardItems.includes("sad")) {
+    message += "It’s okay to feel sad; allow yourself to heal.";
+} else if (moodBoardItems.includes("angry")) {
+    message += "Channel your anger into something constructive.";
+} else if (moodBoardItems.includes("anxious")) {
+    message += "Take a moment for yourself; you are doing great.";
+} else if (moodBoardItems.includes("scared")) {
+    message += "Courage is facing fear; you are stronger than you think!";
+
+// Three-mood combinations
+} else if (moodBoardItems.includes("joy") && moodBoardItems.includes("angry") && moodBoardItems.includes("sad")) {
+    message += "An interesting mix of passion, peace, and optimism!";
+} else if (moodBoardItems.includes("anxious") && moodBoardItems.includes("joy") && moodBoardItems.includes("sad")) {
+    message += "Refreshing and optimistic, with a calm undertone!";
+} else if (moodBoardItems.includes("angry") && moodBoardItems.includes("scared") && moodBoardItems.includes("sad")) {
+    message += "A mix of passion, calmness, and compassion!";
+} else if (moodBoardItems.includes("angry") && moodBoardItems.includes("anxious") && moodBoardItems.includes("sad")) {
+    message += "An energetic, calming, and nature-filled mix!";
+} else if (moodBoardItems.includes("joy") && moodBoardItems.includes("anxious") && moodBoardItems.includes("sad")) {
+    message += "A peaceful yet energetic combination with growth!";
+} else if (moodBoardItems.includes("joy") && moodBoardItems.includes("scared") && moodBoardItems.includes("anxious")) {
+    message += "A lively, nurturing, and bright combination of positivity!";
+} else if (moodBoardItems.includes("joy") && moodBoardItems.includes("scared") && moodBoardItems.includes("sad")) {
+    message += "A beautiful mix of optimism, peace, and compassion!";
+} else if (moodBoardItems.includes("scared") && moodBoardItems.includes("anxious") && moodBoardItems.includes("sad")) {
+    message += "A soothing, fresh, and lively combination!";
+} else if (moodBoardItems.includes("joy") && moodBoardItems.includes("angry") && moodBoardItems.includes("anxious")) {
+    message += "A strong, vibrant, and energetic trio!";
+} else if (moodBoardItems.includes("angry") && moodBoardItems.includes("scared") && moodBoardItems.includes("anxious")) {
+    message += "A passionate, nurturing, and vibrant mix!";
+} else {
+    message += "Keep exploring your emotions!";
+}
+
+
+      document.getElementById('message').innerText = message;
+  });
+</script>
+
+
+ <!-- BUBBLES script -->
+
+ <!-- <script>
+  (function() {
+      // Array of affirmations
+      const affirmations = [
+          "You're amazing!",
+          "Keep going!",
+          "You got this!",
+          "Breathe and relax.",
+          "Stay positive!",
+          "You're doing great!"
+      ];
+
+      // Game variables
+      const gameDuration = 30; // Game duration in seconds
+      let poppedCount = 0;
+      let gameActive = false; // Set gameActive to false initially
+      let timeLeft = gameDuration; // Timer countdown
+      let bubbleInterval, timerInterval; // Declare intervals for control
+
+      // Array of random colors for the bubbles
+      const bubbleColors = ['#FF5733', '#33FF57', '#3357FF', '#FFD700', '#FF33A6', '#8A2BE2', '#FF4500'];
+
+      // Function to create and float a bubble
+      function createBubble() {
+          if (!gameActive) return;
+
+          const bubble = document.createElement('div');
+          bubble.classList.add('bubble');
+          bubble.style.position = 'absolute';
+          bubble.style.left = Math.random() * 80 + 'vw'; // Ensure bubbles are within the modal's width
+          bubble.style.top = '100%';
+          bubble.style.width = '50px';
+          bubble.style.height = '50px';
+          bubble.style.borderRadius = '50%';
+          bubble.style.backgroundColor = bubbleColors[Math.floor(Math.random() * bubbleColors.length)];
+          bubble.style.animation = float ${Math.random() * 8 + 3}s linear infinite; // Slightly faster bubble speed (3-11s)
+
+          // Add event listener for popping the bubble
+          bubble.addEventListener('click', popBubble);
+          document.getElementById('bubbleContainer').appendChild(bubble);
+      }
+
+      // Function to pop a bubble
+      function popBubble(event) {
+          if (!gameActive) return;
+
+          const bubble = event.target;
+          bubble.classList.add('pop');
+          
+          // Play pop sound
+          const popSound = document.getElementById('pop-sound');
+          popSound.currentTime = 0;
+          popSound.play();
+
+          // Update score
+          poppedCount++;
+          document.getElementById('score').textContent = Score: ${poppedCount};
+
+          // Remove bubble after animation
+          setTimeout(() => {
+              bubble.remove();
+          }, 300);
+      }
+
+      // Function to update timer
+      function updateTimer() {
+          if (timeLeft > 0 && gameActive) {
+              timeLeft--;
+              document.getElementById('timeLeft').textContent = timeLeft;
+          } else {
+              endGame();
+          }
+      }
+
+      // Function to stop the game and display final message
+      function endGame() {
+          gameActive = false;
+          document.getElementById('game-over').style.display = 'block';
+          document.getElementById('final-score').textContent = poppedCount;
+
+          // Display a final message based on the score
+          const finalMessage = document.getElementById('final-message');
+          finalMessage.style.display = 'block';
+          if (poppedCount === 0) {
+              finalMessage.textContent = "Better luck next time!";
+          } else if (poppedCount < 5) {
+              finalMessage.textContent = "Do better next time!";
+          } else if (poppedCount < 10) {
+              finalMessage.textContent = "Good job!";
+          } else if (poppedCount < 15) {
+              finalMessage.textContent = "Great going!";
+          } else {
+              finalMessage.textContent = "You're a bubble-popping pro!";
+          }
+
+          // Clear intervals after game ends
+          clearInterval(bubbleInterval);
+          clearInterval(timerInterval);
+      }
+
+      // Set up the game when "Start Game" button is clicked
+      document.getElementById('start-game-button').addEventListener('click', function() {
+          gameActive = true;
+          poppedCount = 0;
+          timeLeft = gameDuration;
+
+          // Show the game container and hide the start button
+          document.getElementById('start-game-container').style.display = 'none';
+          document.getElementById('bubbleContainer').style.display = 'block';
+
+          // Reset score and timer
+          document.getElementById('score').textContent = Score: 0;
+          document.getElementById('timeLeft').textContent = timeLeft;
+
+          // Start bubble generation and timer countdown
+          bubbleInterval = setInterval(createBubble, 1000); // Create a new bubble every second
+          timerInterval = setInterval(updateTimer, 1000); // Update the timer every second
+      });
+
+      // Reset game elements when modal is closed
+      $('#myModal4').on('hidden.bs.modal', function () {
+          document.getElementById('bubbleContainer').innerHTML = '';
+          document.getElementById('game-over').style.display = 'none';
+          document.getElementById('start-game-container').style.display = 'block';
+          document.getElementById('bubbleContainer').style.display = 'none';
+          clearInterval(bubbleInterval);
+          clearInterval(timerInterval);
+      });
+  })();
+</script> -->
+<script>
+  (function() {
+      // Array of affirmations
+      const affirmations = [
+          "You're amazing!",
+          "Keep going!",
+          "You got this!",
+          "Breathe and relax.",
+          "Stay positive!",
+          "You're doing great!"
+      ];
+
+      // Game variables
+      const gameDuration = 30; // Game duration in seconds
+      let poppedCount = 0;
+      let gameActive = false; // Set gameActive to false initially
+      let timeLeft = gameDuration; // Timer countdown
+      let bubbleInterval, timerInterval; // Declare intervals for control
+
+      // Array of random colors for the bubbles
+      const bubbleColors = ['#FF5733', '#33FF57', '#3357FF', '#FFD700', '#FF33A6', '#8A2BE2', '#FF4500'];
+
+      // Function to create and float a bubble
+      function createBubble() {
+          if (!gameActive) return;
+
+          const bubble = document.createElement('div');
+          bubble.classList.add('bubble');
+          bubble.style.position = 'absolute';
+          bubble.style.left = Math.random() * 80 + 'vw'; // Ensure bubbles are within the modal's width
+          bubble.style.top = '100%';
+          bubble.style.width = '50px';
+          bubble.style.height = '50px';
+          bubble.style.borderRadius = '50%';
+          bubble.style.backgroundColor = bubbleColors[Math.floor(Math.random() * bubbleColors.length)];
+          bubble.style.animation = `float ${Math.random() * 8 + 3}s linear infinite`; // Slightly faster bubble speed (3-11s)
+
+          // Add event listener for popping the bubble
+          bubble.addEventListener('click', popBubble);
+          document.getElementById('bubbleContainer').appendChild(bubble);
+      }
+
+      // Function to pop a bubble
+      function popBubble(event) {
+          if (!gameActive) return;
+
+          const bubble = event.target;
+          bubble.classList.add('pop');
+          
+          // Play pop sound
+          const popSound = document.getElementById('pop-sound');
+          popSound.currentTime = 0;
+          popSound.play();
+
+          // Update score
+          poppedCount++;
+          document.getElementById('score').textContent = `Score: ${poppedCount}`;
+
+          // Remove bubble after animation
+          setTimeout(() => {
+              bubble.remove();
+          }, 300);
+      }
+
+      // Function to update timer
+      function updateTimer() {
+          if (timeLeft > 0 && gameActive) {
+              timeLeft--;
+              document.getElementById('timeLeft').textContent = timeLeft;
+          } else {
+              endGame();
+          }
+      }
+
+      // Function to stop the game and display final message
+      function endGame() {
+          gameActive = false;
+          document.getElementById('game-over').style.display = 'block';
+          document.getElementById('final-score').textContent = poppedCount;
+
+          // Display a final message based on the score
+          const finalMessage = document.getElementById('final-message');
+          finalMessage.style.display = 'block';
+          if (poppedCount === 0) {
+              finalMessage.textContent = "Better luck next time!";
+          } else if (poppedCount < 5) {
+              finalMessage.textContent = "Do better next time!";
+          } else if (poppedCount < 10) {
+              finalMessage.textContent = "Good job!";
+          } else if (poppedCount < 15) {
+              finalMessage.textContent = "Great going!";
+          } else {
+              finalMessage.textContent = "You're a bubble-popping pro!";
+          }
+
+          // Clear intervals after game ends
+          clearInterval(bubbleInterval);
+          clearInterval(timerInterval);
+      }
+
+      // Set up the game when "Start Game" button is clicked
+      document.getElementById('start-game-button').addEventListener('click', function() {
+          gameActive = true;
+          poppedCount = 0;
+          timeLeft = gameDuration;
+
+          // Show the game container and hide the start button
+          document.getElementById('start-game-container').style.display = 'none';
+          document.getElementById('bubbleContainer').style.display = 'block';
+
+          // Reset score and timer
+          document.getElementById('score').textContent = `Score: 0`;
+          document.getElementById('timeLeft').textContent = timeLeft;
+
+          // Start bubble generation and timer countdown
+          bubbleInterval = setInterval(createBubble, 1000); // Create a new bubble every second
+          timerInterval = setInterval(updateTimer, 1000); // Update the timer every second
+      });
+
+      // Reset game elements when modal is closed
+      $('#myModal4').on('hidden.bs.modal', function () {
+          document.getElementById('bubbleContainer').innerHTML = '';
+          document.getElementById('game-over').style.display = 'none';
+          document.getElementById('start-game-container').style.display = 'block';
+          document.getElementById('bubbleContainer').style.display = 'none';
+          clearInterval(bubbleInterval);
+          clearInterval(timerInterval);
+      });
+  })();
+</script>
+
+
+<!-- jigsaw script -->
+<script>
+  const images = [
+      '/static/images/jigsaw1.jpg', // Image 1 path
+      '/static/images/jigsaw2.jpg', // Image 2 path
+      '/static/images/jigsaw3.jpg'  // Image 3 path
+  ];
+  
+  let currentImageIndex = 0; // Track the current image
+  const rows = 4;
+  const cols = 4;
+  const totalPieces = rows * cols;
+  
+  const puzzleContainer = document.getElementById('puzzle-container');
+  const shuffleBtn = document.getElementById('shuffle-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const congratulationsMessage = document.getElementById('congratulations-message');
+  
+  // Create puzzle pieces based on the selected image
+  function createPuzzle(imageSrc) {
+      puzzleContainer.innerHTML = ''; // Clear previous puzzle
+      for (let i = 0; i < totalPieces; i++) {
+          const piece = document.createElement('div');
+          piece.classList.add('puzzle-piece');
+          piece.style.backgroundImage = `url(${imageSrc})`; // Corrected template literal
+          piece.style.backgroundPosition = `${(-i % cols) * 100}px ${(-Math.floor(i / cols) * 100)}px`; // Corrected template literal
+          piece.setAttribute('data-id', i);
+          piece.setAttribute('data-position', i); // Store initial position
+          piece.draggable = true; // Enable drag-and-drop
+  
+          // Add drag events
+          piece.addEventListener('dragstart', dragStart);
+          piece.addEventListener('dragover', dragOver);
+          piece.addEventListener('drop', drop);
+  
+          puzzleContainer.appendChild(piece);
+      }
+      shufflePieces(); // Automatically shuffle the puzzle when created
+  }
+  
+  // Drag and drop functions
+  let draggedPiece = null;
+  
+  function dragStart(event) {
+      draggedPiece = event.target; // Store the piece being dragged
+  }
+  
+  function dragOver(event) {
+      event.preventDefault(); // Prevent default behavior to allow dropping
+  }
+  
+  function drop(event) {
+      event.preventDefault();
+      if (event.target.classList.contains('puzzle-piece')) {
+          const targetPiece = event.target; // Get the target piece
+          const targetId = targetPiece.getAttribute('data-id'); // Store target piece's ID
+          const draggedId = draggedPiece.getAttribute('data-id'); // Store dragged piece's ID
+  
+          // Swap data-ids
+          targetPiece.setAttribute('data-id', draggedId);
+          draggedPiece.setAttribute('data-id', targetId);
+  
+          // Swap background positions
+          const draggedBgPos = draggedPiece.style.backgroundPosition;
+          draggedPiece.style.backgroundPosition = targetPiece.style.backgroundPosition;
+          targetPiece.style.backgroundPosition = draggedBgPos;
+  
+          // Check if the puzzle is solved
+          checkPuzzleCompletion();
+      }
+  }
+  
+  // Shuffle the pieces randomly
+  function shufflePieces() {
+      const pieces = Array.from(puzzleContainer.children);
+      pieces.sort(() => Math.random() - 0.5); // Randomize the pieces
+      pieces.forEach(piece => puzzleContainer.appendChild(piece)); // Re-append pieces in new order
+  }
+  
+  // Check if all pieces are in the correct position
+  function checkPuzzleCompletion() {
+      let isComplete = true;
+      const pieces = Array.from(puzzleContainer.children);
+      pieces.forEach(piece => {
+          if (piece.getAttribute('data-id') !== piece.getAttribute('data-position')) {
+              isComplete = false;
+          }
+      });
+  
+      if (isComplete) {
+          showCongratulationsMessage();
+      }
+  }
+  
+  // Show congratulations message in the center
+  function showCongratulationsMessage() {
+      congratulationsMessage.style.display = 'block'; // Display the message
+  }
+  
+  // Handle next image button
+  nextBtn.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex + 1) % images.length; // Cycle to the next image
+      congratulationsMessage.style.display = 'none'; // Hide congratulations message
+      createPuzzle(images[currentImageIndex]); // Create puzzle with new image
+  });
+  
+  // Shuffle button action
+  shuffleBtn.addEventListener('click', () => {
+      congratulationsMessage.style.display = 'none'; // Hide congratulations message
+      shufflePieces();
+  });
+  
+  // Initialize the puzzle on modal show
+  $('#myModal5').on('shown.bs.modal', function () {
+      createPuzzle(images[currentImageIndex]); // Load the initial image
+  });
+  </script>
+  
+  
+</body>
+<script src="/assests/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assests/js/jquery.min.js"></script>
+<script src="/assests/js/darkmode.js"></script>
+<script src="/assests/aos/aos.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</html>

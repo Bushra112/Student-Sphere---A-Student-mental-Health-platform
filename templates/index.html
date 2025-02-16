@@ -1,0 +1,569 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="/static/style.css">
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap JS (jQuery and Popper.js are also required) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+ 
+   <title>StudentSphere</title>
+ </head>
+ 
+ <body>
+   <nav class="navbar navbar-expand-lg bg-body-tertiary menubar">
+     <div class="container-fluid navdiv">
+ 
+       <a class="navbar-brand"  >𝑆𝑡𝑢𝑑𝑒𝑛𝑡𝑆𝑝ℎ𝑒𝑟𝑒</a>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+           <!-- <img src="/assests/img/logo1.jpg" alt="" height="25" style="margin-top: 20px;"> -->
+           <li class="nav-item" role="presentation">
+             <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" role="tab"
+               aria-controls="pills-home" aria-selected="true">Home</a>
+           </li>
+           <li class="nav-item" role="presentation">
+             <a class="nav-link" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" type="a"
+               role="tab" aria-controls="pills-about" aria-selected="false"  href="/about">About Us!</a>
+           </li>
+           <li class="nav-item" role="presentation">
+             <a class="nav-link" id="pills-project-tab" data-bs-toggle="pill" data-bs-target="#pills-project" type="a"
+               role="tab" aria-controls="pills-project" aria-selected="false" href="/project">Analysis</a>
+           </li>
+           <li class="nav-item" role="presentation">
+             <a class="nav-link" id="pills-quiz-tab" data-bs-toggle="pill" data-bs-target="#pills-quiz" type="a"
+               role="tab" aria-controls="pills-quiz" aria-selected="false" href="/quiz">Quiz</a>
+           </li>
+           <li class="nav-item" role="presentation">
+             <a class="nav-link" id="pills-forum-tab" data-bs-toggle="pill" data-bs-target="#pills-forum" type="a"
+               role="tab" aria-controls="pills-forum" aria-selected="false" href="/explore">Explore</a>
+           </li>
+           <li class="nav-item" role="presentation">
+             <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="a"
+               role="tab" aria-controls="pills-contact" aria-selected="false" href="/contact">Contact Us</a>
+           </li>
+         </ul>
+ <!-- Conditionally display based on login status -->
+
+       </div>
+     </div>
+     <span class="">
+      {% if session.get('username') %}
+          <span class="logdisplay">
+              <div class="logname" href="#">Welcome, {{ session['username'] }}!</div>
+          </span>
+      {% else %}
+          <span class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </span>
+      {% endif %}
+        </span>
+     <button class="navbutton">
+       
+ 
+       <a href="/" class="logout"><i class="bx bx-log-out-circle"></i>Logout</a>
+     </button>
+     <!-- <button class="navbutton"><a href="admin.html">Admin</a></button> -->
+   </nav>
+   <!-- TABS -->
+   <div class="tab-content" id="pills-tabContent">
+     <!-- HOME TAB -->
+     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+       tabindex="0">
+ 
+       <div class="banner">
+         <div class=" alert d-block px-3 py-2 text-center text-bold offer">
+           <a href="#" class="text-decoration-none alrtext">Discover sentiment analysis! Click the Project tab for
+             insightful emotion analysis, guiding you toward a deeper self-understanding and well-being.</a> 
+         </div>
+ 
+ 
+         <div class="text-container">
+           <h1 id="website-name">StudentSphere</h1>
+           <h2 id="slogan">Fostering Peace, Nurturing Minds</h2>
+           <p id="additional-text">Welcome to StudentSphere, a sanctuary dedicated to students' mental health.<br>
+             Discover resources, support, and a caring community as we navigate the journey towards <br>resilient minds
+             and balanced academic success together.</p>
+         </div>
+       </div>
+
+       <!-- <div id="chatbot">
+       
+        <div id="chatbot-header"> 
+            <span>Share Your Heart, We'll Listen</span> <button id="chatbot-close">X</button>
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="chatbot-text" placeholder="Type your message...">
+            <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <button id="chatbot-open"><i class="fas fa-robot"></i>Chat</button>
+
+<script>
+document.getElementById("chatbot-open").onclick = function() {
+    document.getElementById("chatbot").style.display = "flex";
+    this.style.display = "none";
+};
+
+document.getElementById("chatbot-close").onclick = function() {
+    document.getElementById("chatbot").style.display = "none";
+    document.getElementById("chatbot-open").style.display = "block";
+};
+
+document.getElementById("chatbot-send").onclick = function() {
+    var message = document.getElementById("chatbot-text").value;
+    if (message.trim() !== "") {
+        var messageElement = document.createElement("div");
+        messageElement.className = "chatbot-message user-message";
+        messageElement.textContent = message;
+        document.getElementById("chatbot-messages").appendChild(messageElement);
+        document.getElementById("chatbot-text").value = "";
+        // Call the backend API here to get the chatbot's response
+        // Add the chatbot's response to the chat window
+    }
+};
+
+    </script> -->
+
+    <div id="chatbot">
+      <div id="chatbot-header">
+          <span>Share Your Heart, We'll Listen</span> <button id="chatbot-close">X</button>
+      </div>
+      <div id="chatbot-messages"></div>
+      <div id="chatbot-input">
+          <input type="text" id="chatbot-text" placeholder="Type your message...">
+          <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+      </div>
+  </div>
+  
+  <button id="chatbot-open"><i class="fas fa-robot"></i> Chat</button>
+  <style>
+    .loading-spinner {
+        border: 4px solid #f3f3f3; /* Light grey */
+        border-top: 4px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        display: none; /* Hidden by default */
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    </style>
+    
+    <script>
+      document.getElementById("chatbot-open").onclick = function() {
+          document.getElementById("chatbot").style.display = "flex";
+          this.style.display = "none";
+      };
+    
+      document.getElementById("chatbot-close").onclick = function() {
+          document.getElementById("chatbot").style.display = "none";
+          document.getElementById("chatbot-open").style.display = "block";
+      };
+    
+      document.getElementById("chatbot-send").onclick = async function() {
+          var message = document.getElementById("chatbot-text").value;
+          if (message.trim() !== "") {
+              console.log("Question to AI:", message);
+    
+              // Display user message
+              var userMessageElement = document.createElement("div");
+              userMessageElement.className = "chatbot-message user-message";
+              userMessageElement.textContent = message;
+              document.getElementById("chatbot-messages").appendChild(userMessageElement);
+              document.getElementById("chatbot-text").value = "";
+    
+              // Show typing indicator (loading spinner)
+              console.log("AI is processing...");
+              typingIndicator = document.createElement("div");
+              typingIndicator.className = "chatbot-message bot-message";
+              typingIndicator.innerHTML = '<div class="loading-spinner"></div>'; // Add spinner
+              document.getElementById("chatbot-messages").appendChild(typingIndicator);
+    
+              // Fetch response from server
+              const response = await fetch('/chat', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ message: message })
+              });
+    
+              // Remove typing indicator
+              document.getElementById("chatbot-messages").removeChild(typingIndicator);
+    
+              // Get the AI response
+              const data = await response.json();
+              console.log("Answer from AI:", data.response);
+    
+              var botMessageElement = document.createElement("div");
+              botMessageElement.className = "chatbot-message bot-message";
+              botMessageElement.innerHTML = `<span>${data.response}</span>`;
+              document.getElementById("chatbot-messages").appendChild(botMessageElement);
+    
+              scrollToBottom(); // Scroll to the bottom after new message
+          }
+      };
+    
+      function scrollToBottom() {
+          const messagesContainer = document.getElementById("chatbot-messages");
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    </script>
+    
+  
+
+       <!-- GAUGE -->
+       <div class="happimeter container">
+         <h1>Happimeter: Measure Your Joy</h1>
+         <h5>Discover the power of happiness with our Happimeter! Gauge your joy with a simple slider, and let the
+           Happimeter reveal <br>your happiness level. Explore the science of well-being today!</h5>
+ 
+       </div>
+       <div id="gauge">
+         <div id="major-ticks">
+           <span>0</span>
+           <span>5</span>
+           <span>10</span>
+         </div>
+         <div id="minor-ticks">
+           <span title="--i:1"></span>
+           <span title="--i:2"></span>
+           <span title="--i:3"></span>
+           <span title="--i:4"></span>
+           <span title="--i:5"></span>
+           <span title="--i:6"></span>
+           <span title="--i:7"></span>
+           <span title="--i:8"></span>
+           <span title="--i:9"></span>
+           <span title="--i:10"></span>
+           <span title="--i:11"></span>
+           <span title="--i:12"></span>
+           <span title="--i:13"></span>
+           <span title="--i:14"></span>
+           <span title="--i:15"></span>
+           <span title="--i:16"></span>
+           <span title="--i:17"></span>
+           <span title="--i:18"></span>
+           <span title="--i:19"></span>
+           <span title="--i:20"></span>
+         </div>
+         <div id="minor-ticks-bottom-mask"></div>
+         <div id="bottom-circle"></div>
+         <svg version="1.1" baseProfile="full" width="190" height="190" xmlns="http://www.w3.org/2000/svg">
+           <linearGradient id="gradient" x1="0" x2="1" y1="0" y2="0">
+             <stop offset="0%" stop-color="#FFC436" />
+             <stop offset="100%" stop-color="#F2F597" />
+           </linearGradient>
+           <path d="M5 95 A80 80 0 0 1 185 95" stroke=url(#gradient) fill="none" stroke-width="10" stroke-linecap="round"
+             stroke-dasharray="0 282.78" />
+         </svg>
+         <div id="center-circle">
+           <span id="name">HAPPIMETER</span>
+           <span id="temperature">-</span>
+         </div>
+         <input type="range" id="range" max="10" min="0" value="5">
+       </div>
+ 
+       <script>
+         const arc = document.querySelector("svg path");
+         const temperature = document.querySelector("#temperature");
+         const range = document.querySelector("#range");
+         range.addEventListener('change', (e) => {
+           temperature.textContent = e.target.value;
+ 
+           const arc_length = arc.getTotalLength();
+           const step = arc_length / (range.max - range.min);
+           const value = (e.target.value - range.min) * step;
+           arc.style.strokeDasharray = `${value} ${arc_length - value}`;
+         })
+       </script>
+ 
+       <!-- STUDENT SPOTLIGHT -->
+       <div class="studentbanner">
+         <h1>Student Spotlight</h1>
+         <h4>a dedicated space where we shine a spotlight on the remarkable talents<br> and inspiring stories of the
+           students. Within this curated section,<br> we showcase the diverse skills, achievements, <br>and journeys of
+           the exceptional student community.</h4>
+         <!-- Button trigger modal -->
+         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           Know More!
+         </button>
+ 
+         <!-- Modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-dialog-centered  modal-xl">
+             <div class="modal-content">
+               <div class="modal-body">
+                 <div class="title text-center text-bold">
+                   <h2><b></b>STUDENT SPOTLIGHT</h2>
+                 </div>
+                 <div class="row">
+ 
+ 
+                   <div class="flip-card col-sm">
+                     <div class="flip-card-inner">
+                       <div class="flip-card-front"><b class="text-bold ">Amanda Southworth</b>
+                         <img class="kmimg" src="/assests/img/KM1.jpg">
+                       </div>
+                       <div class="flip-card-back">
+                         <h5><b>Amanda Southworth</b></h5>
+                         <p><b>Amanda Southworth</b> is a fifteen year old who struggled with mental illness and suicidal
+                           thoughts which inspired her to start coding. She used this outlet as a tool to develop apps
+                           designed to help others stop suffering in silence and find the courage to reach out and
+                           changed their life.</p>
+                         <!-- <p>She is a programmer, designer, and creator of the apps, Anxiety Helper and Verena. She has been coding since she was 10 years old, and created both of her apps when she was just 15. Her apps are designed to provide safety, information and emergency help to those who are struggling with mental illness</p> -->
+                       </div>
+ 
+                     </div>
+                   </div>
+ 
+                   <div class="flip-card col-sm">
+                     <div class="flip-card-inner">
+                       <div class="flip-card-front"><b class="text-bold ">Seema Kumari</b>
+                         <img class="kmimg" src="/assests/img/seema.png">
+                       </div>
+                       <div class="flip-card-back">
+                         <h5><b>Seema Kumari</b></h5>
+                         <p>My parents do not know where Harvard is, Jharkand girl enjoys spotlight after getting Harvard
+                           Scholarship
+                         </p>
+ 
+                       </div>
+ 
+                     </div>
+                   </div>
+                   <div class="flip-card col-sm">
+                     <div class="flip-card-inner">
+                       <div class="flip-card-front"><b class="text-bold ">Akash Vukoti</b>
+                         <img class="kmimg" src="/assests/img/unnamed.jpg">
+                       </div>
+                       <div class="flip-card-back">
+                         <h5><b>Akash Vukoti</b></h5>
+                         <p>Akash Vukoti competed for a record 6 times at the Scripps National Spelling Bee[1] and was
+                           the first-ever first grader to compete in the bee.Vukoti competed in his first spelling bee
+                           when he was 2 years old.[7] He was inducted into American Mensa at the age of 3 and became a
+                           Davidson Young Scholar[8] at the age of 5.[9] He became the first-ever first grader to compete
+                           in the history of the Scripps National Spelling Bee at the age of 6 years, in 2016.
+                         </p>
+ 
+                       </div>
+ 
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+ 
+           </div>
+         </div>
+       </div>
+       <!-- FEEDBACK SESSION -->
+       <!-- <section class="client_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h1>What Our Student's Say</h1>
+            </div>
+
+            <div class="carousel-container">
+                {% for feedback in feedbacks %}
+                <div class="feedback-item {% if loop.index <= 2 %}active{% endif %}">
+                    <div class="client_info">
+                        <h5 class="feedback-user">{{ feedback.username }}</h5>
+                        <p class="feedback-text">{{ feedback.feedback }}</p>
+                        <p><i class="fas fa-thumbs-up"></i> {{ feedback.likes }}</p>
+                        <span>{{ feedback.timestamp }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="carousel-buttons">
+                <button id="prevBtn" disabled>Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="client_section layout_padding">
+      <div class="container">
+          <div class="heading_container heading_center">
+              <h1>What Our Students Say</h1>
+          </div>
+  
+          <div class="row">
+              {% for feedback in feedbacks %}
+              <div class="col-md-6">
+                  <div class="feedback-item">
+                      <div class="client_info">
+                          <h5 class="feedback-user">{{ feedback.username }}</h5>
+                          <p class="feedback-text">{{ feedback.feedback }}</p>
+                          <p>
+                            <i class="fas fa-thumbs-up" id="likeBtn_{{ feedback._id }}" data-feedback-id="{{ feedback._id }}"></i> 
+                            <span class="like-count">{{ feedback.likes }}</span>
+                        </p>
+                        
+                          <span>{{ feedback.timestamp }}</span>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+          <div class="carousel-buttons">
+            <button id="prevBtn" disabled>Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+      </div>
+  </section>
+  <script>
+    $(document).ready(function() {
+    $('.fa-thumbs-up').click(function() {
+        const feedbackId = $(this).data('feedback-id');
+        const likeCountElement = $(this).next('.like-count');
+        const currentLikes = parseInt(likeCountElement.text());
+
+        $.post('/like_feedback', { feedback_id: feedbackId }, function(response) {
+            if (response.status === 'liked') {
+                likeCountElement.text(response.likes); // Increment likes
+            } else if (response.status === 'unliked') {
+                likeCountElement.text(response.likes); // Decrement likes
+            } else {
+                alert(response.message); // Handle error
+            }
+        }).fail(function() {
+            alert('An error occurred while processing your request.');
+        });
+    });
+});
+
+  </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let currentSlide = 0;
+            const items = $('.feedback-item');
+            const totalItems = items.length;
+            const itemsPerPage = 2;
+
+            function updateCarousel() {
+                items.hide().removeClass('active');
+                for (let i = currentSlide; i < currentSlide + itemsPerPage && i < totalItems; i++) {
+                    $(items[i]).show().addClass('active');
+                }
+                $('#prevBtn').prop('disabled', currentSlide === 0);
+                $('#nextBtn').prop('disabled', currentSlide + itemsPerPage >= totalItems);
+            }
+
+            $('#nextBtn').click(function() {
+                if (currentSlide + itemsPerPage < totalItems) {
+                    currentSlide += itemsPerPage;
+                    updateCarousel();
+                }
+            });
+
+            $('#prevBtn').click(function() {
+                if (currentSlide > 0) {
+                    currentSlide -= itemsPerPage;
+                    updateCarousel();
+                }
+            });
+
+            updateCarousel(); // Initialize the carousel
+        });
+    </script>
+     </div>
+     <!-- ABOUT TAB -->
+     
+     <!-- PROJECT TAB -->
+    
+     <!-- QUIZ TAB -->
+   
+     <!-- STUDENT FORUM TAB -->
+     <!-- CONTACT TAB -->
+  
+ <!-- FOOTER -->
+     <footer class="site-footer">
+       <div class="container">
+         <div class="row">
+ 
+           <div class="col-sm-4">
+             <ul class="footer-info">
+ 
+               <li>
+                 <h5>StudentSphere</h5>
+                 <p>Vellore Institute Of Technology, Chennai</p>
+                 <p>Kelambakkam-Vandalur road</p>
+                 <p>Phone Number: 7200910451</p>
+               </li>
+             </ul>
+           </div>
+           <div class="col-sm-4">
+             <div class="social-media-icons">
+               <a href="https://www.instagram.com/your-instagram-handle" target="_blank" class="icon-instagram"></a>
+               <a href="https://twitter.com/your-twitter-handle" target="_blank" class="icon-twitter"></a>
+               <a href="https://www.facebook.com/your-facebook-page" target="_blank" class="icon-facebook"></a>
+             </div>
+           </div>
+           <div class="col-sm-4">
+             <ul class="help">
+               <li>
+                 <h5 class="text-white">HelpDesk:</h5>
+                 <p>044-20842000, 044-24800222</p>
+                 <p>Student.sphere@gmail.com</p>
+               </li>
+             </ul>
+           </div>
+ 
+           <div class="copyr">
+             <p>&copy; StudentSphere. All rights reserved.</p>
+             <ul class="text-white">
+               <p>Visitors Count: <span id="visitorCount">0</span></p>
+             </ul>
+           </div>
+         </div>
+       </div>
+ 
+ 
+ 
+       <script>
+         // Function to increment visitor count
+         function incrementVisitorCount() {
+           if (typeof (Storage) !== "undefined") {
+             if (localStorage.visitorCount) {
+               localStorage.visitorCount = Number(localStorage.visitorCount) + 1;
+             } else {
+               localStorage.visitorCount = 1;
+             }
+             document.getElementById("visitorCount").innerHTML = localStorage.visitorCount;
+           } else {
+             console.log("Sorry, your browser does not support web storage...");
+           }
+         }
+ 
+         // Call the function when the page loads
+         window.onload = function () {
+           incrementVisitorCount();
+         };
+       </script>
+     </footer>
+ </body>
+ <script src="/assests/bootstrap/js/bootstrap.min.js"></script>
+ <script src="/assests/js/jquery.min.js"></script>
+ <script src="/assests/js/darkmode.js"></script>
+ <script src="/assests/aos/aos.js"></script>
+ 
+ </html>

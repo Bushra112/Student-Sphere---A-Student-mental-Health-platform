@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/assests/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>StudentSphere-Admin</title>
+</head>
+
+<body>
+  <!-- <div class="sidebar">
+    <a href="#" class="logo">
+      <img src="/assests/img/logo1.jpg" alt="" />
+      <span>StudentSphere</span>
+
+    </a>
+     <ul class="side-menu">
+          <li class="active">
+            <a href="#"><i class="bx bxs-dashboard"></i>Dashboard</a>
+          </li>
+          <li>
+            <a href="#"><i class="bx bx-video"></i>Content</a>
+          </li>
+          <li>
+            <a href="#"><i class="bx bx-bar-chart"></i>Analytics</a>
+          </li>
+          <li>
+            <a href="#"><i class="bx bx-comment-detail"></i>Comments</a>
+          </li>
+          <li>
+            <a href="#"><i class="bx bx-customize"></i>Customize</a>
+          </li>
+          <li>
+            <a href="#"><i class="bx bx-group"></i>Users</a>
+          </li>
+          <li>
+            <a href="#"><i class="bx bx-cog"></i>Settings</a>
+          </li>
+        </ul> 
+
+
+  </div> -->
+  <!-- =============Sidebar Close================ -->
+  <div class="content">
+    <nav>
+      <i class="bx bx-menu"></i>
+      <form action="#">
+        <div class="form-input">
+          <h2>StudentSphere-Admin</h2>
+        </div>
+      </form>
+      <a href="#" class="notification">
+        <i class="bx bx-bell"></i>
+
+
+        <li>
+          <a href="/" class="logout">Logout</a>
+        </li>
+      </a>
+
+      <a href="#" class="profile">
+        <img src="/static/images/person-icon.jpeg" alt="" />
+      </a>
+    </nav>
+    <!-- Main Start -->
+    <main>
+      <div class="header">
+        <h1>Dashboard</h1>
+        <ul class="breadcrumb">
+          <li><a href="#" class="active">Analytics</a></li>
+          |
+          <li><a href="#">Content</a></li>
+          <a href="/quizdash">
+            <p style="font-style: italic;">click here to view Quiz Report</p>
+          </a>
+        </ul>
+      </div>
+<style>
+  .regisimg{
+    height: 50px;
+    width: 50px
+  }
+</style>
+      <!--============= cards start ===============-->
+      <ul class="cards">
+        <li>
+          <img class="regisimg" src="/static/images/register.png">
+          <span class="info">
+            <h3>{{ registered_users_count }}</h3> <!-- Display the registered user count -->
+            <p>Registered accounts</p>
+          </span>
+        </li>
+
+        <li>
+         <img class="regisimg" src="/static/images/positive.png">
+          <span class="info">
+              <h3>{{ total_positive_count }}</h3> <!-- Display the total positive count -->
+              <p>Total Positive</p>
+          </span>
+      </li>
+      <li>
+        <img class="regisimg" src="/static/images/web-traffic.png" alt="Site Traffic">
+        <span class="info">
+        <h3 class="info" id="visitorCount">0</h3>
+          <p>Site Visits </p> <!-- Display visitor count here -->
+        </span>
+        <script>
+          // Function to increment visitor count
+          function incrementVisitorCount() {
+            if (typeof (Storage) !== "undefined") {
+              if (localStorage.visitorCount) {
+                // Increment the count if it exists
+                localStorage.visitorCount = Number(localStorage.visitorCount) + 1;
+              } else {
+                // Initialize the count if it doesn't exist
+                localStorage.visitorCount = 1;
+              }
+              // Update the displayed count
+              document.getElementById("visitorCount").innerHTML = localStorage.visitorCount;
+            } else {
+              console.log("Sorry, your browser does not support web storage...");
+            }
+          }
+      
+          // Call the function when the page loads
+          window.onload = function () {
+            incrementVisitorCount();
+          };
+        </script>
+      </li>
+      
+        <li>
+          <img class="regisimg" src="/static/images/subscribe.png">
+          <span class="info">
+            <h3>-</h3>
+            <p>Subscribers</p>
+          </span>
+        </li>
+      </ul>
+      <!--============= cards close ===============-->
+
+      <!--============= bottom Data Start ===============-->
+
+      <div class="header">
+        <h3>Sentiment Analysis Report</h3>
+      </div>
+
+      <label for="batchFilter">Filter by Batch:</label>
+      <select id="batchFilter" onchange="filterTable()">
+        <option value="">All</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+      </select>
+
+      <div id="results">
+        {% if analysis_list %}
+        <table id="analysisTable">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Reg Number</th>
+              <th>Batch</th>
+              <th>Input Text</th>
+              <th>Sentiment</th>
+              <th>Positivity</th>
+              <th>Negativity</th>
+              <th>Positive Count</th>
+              <th>Stressful Count</th>
+              <th>Depressive Count</th>
+              <th>Therapist Advice</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for analysis in analysis_list %}
+            <tr class="{{ 'negative-sentiment' if analysis.sentiment == 'Negative' else '' }}">
+              <td>{{ analysis.username }}</td>
+              <td class="{{ 'negative-sentiment' if analysis.sentiment == 'Negative' else '' }}">{{ analysis.reg_number
+                }}</td>
+              <td>{{ analysis.batch }}</td>
+              <td>{{ analysis.text }}</td>
+              <td>{{ analysis.sentiment }}</td>
+              <td>{{ analysis.positive_percentage }}</td>
+              <td>{{ analysis.negative_percentage }}</td>
+              <td>{{ analysis.positive_count }}</td>
+              <td>{{ analysis.stressful_count }}</td>
+              <td>{{ analysis.depressive_count }}</td>
+              <td>{{ analysis.therapist_advice }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No analysis results available.</p>
+        {% endif %}
+      </div>
+
+      <script>
+        function filterTable() {
+          const filterValue = document.getElementById("batchFilter").value;
+          const table = document.getElementById("analysisTable");
+          const rows = table.getElementsByTagName("tr");
+
+          for (let i = 1; i < rows.length; i++) { // Start from 1 to skip the header
+            const cells = rows[i].getElementsByTagName("td");
+            const batchCell = cells[2]; // Batch is in the third column (index 2)
+
+            if (batchCell) {
+              const shouldDisplay = filterValue === "" || batchCell.textContent === filterValue;
+              rows[i].style.display = shouldDisplay ? "" : "none"; // Show or hide the row
+            }
+          }
+        }
+      </script>
+
+
+      <!--============= bottom Data Start ===============-->
+    </main>
+    <!-- Main Close -->
+  </div>
+  <!-- =============Contetn CLose================ -->
+</body>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Ruda:wght@400;600;700&display=swap");
+
+  :root {
+    --light: #f6f6f9;
+    --primary: #1976d2;
+    --light-primary: #cfe8ff;
+    --grey: #eee;
+    --dark-grey: #aaaaaa;
+    --dark: #363949;
+    --danger: #d32f2f;
+    --light-danger: #fecdd3;
+    --warning: #fbc02d;
+    --light-warning: #fff2c6;
+    --success: #388e3c;
+    --light-success: #bbf7d0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: "poppins", sans-serif;
+  }
+
+  .bx {
+    font-size: 1.7rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  /* ========Card Start=================== */
+  main {
+    width: 100%;
+    padding: 2.2rem 1.5rem;
+    max-height: calc(100vh - 65px);
+  }
+
+  main .header h1 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--dark);
+  }
+
+  main .breadcrumb {
+    display: flex;
+    align-items: center;
+    grid-gap: 1.2rem;
+  }
+
+  main .breadcrumb li {
+    color: var(--dark);
+  }
+
+  main .breadcrumb li a {
+    color: var(--dark);
+    pointer-events: none;
+  }
+
+  main .breadcrumb li a.active {
+    color: var(--success);
+  }
+
+  main .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  main .cards li {
+    padding: 1.8rem;
+    background-color: var(--light);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    grid-gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+  }
+
+  main .cards li:hover {
+    transform: translateY(-10px);
+  }
+
+  main .cards li .bx {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 10px;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* main .cards li:nth-child(1) .bx {
+    background-color: var(--light-primary);
+    color: var(--primary);
+  } */
+
+  /* main .cards li:nth-child(2) .bx {
+    background-color: var(--light-warning);
+    color: var(--warning);
+  } */
+
+  /* main .cards li:nth-child(3) .bx {
+    background-color: var(--light-danger);
+    color: var(--danger);
+  } */
+/* 
+  main .cards li:nth-child(4) .bx {
+    background-color: var(--light-success);
+    color: var(--success);
+  } */
+
+  main .cards li .info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  main .cards li .info p {
+    color: var(--dark);
+  }
+
+  /* ========Orders Details Start=================== */
+  .content main .bottom_data {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    grid-gap: 24px;
+    margin-top: 24px;
+    color: var(--dark);
+  }
+
+  .content main .bottom_data>div {
+    border-radius: 10px;
+    background-color: var(--light);
+    padding: 24px;
+    overflow-x: auto;
+  }
+
+  main .bottom_data .header {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  main .bottom_data .header h3 {
+    font-size: 24px;
+    font-weight: 600px;
+  }
+
+  main .bottom_data .orders {
+    flex-grow: 1;
+    flex-basis: 500;
+  }
+
+  main .bottom_data .orders table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  main .bottom_data .orders table th {
+    padding: 12px 10px;
+    font-size: 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--grey);
+    background-color: var(--grey);
+    color: var(--dark);
+  }
+
+  main .bottom_data .orders table td {
+    padding: 12px 10px;
+  }
+
+  .content main .bottom_data .orders table .img_content {
+    display: flex;
+    align-items: center;
+    grid-gap: 12px;
+    padding-left: 6px;
+  }
+
+  .content main .bottom_data table td img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .content main .bottom_data .orders table tbody tr {
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+  }
+
+  .content main .bottom_data .orders table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+  }
+
+  .content main .bottom_data .orders table td .status {
+    font-size: 10px;
+    padding: 6px 16px;
+    color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+  }
+
+  .content main .bottom_data .orders table td .status.completed {
+    background-color: var(--success);
+  }
+
+  .content main .bottom_data .orders table td .status.processing {
+    background-color: var(--primary);
+  }
+
+  .content main .bottom_data .orders table td .status.pending {
+    background-color: var(--warning);
+  }
+
+  main .bottom_data .reminders {
+    flex-grow: 1;
+    flex-basis: 300px;
+  }
+
+  main .bottom_data .reminders .task_list {
+    width: 100%;
+  }
+
+  main .bottom_data .reminders .task_list li {
+    width: 100%;
+    margin-bottom: 16px;
+    background-color: var(--grey);
+    padding: 14px 10px;
+    border-radius: 05px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  main .bottom_data .reminders .task_list li .task_title {
+    display: flex;
+    align-items: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Collapse borders */
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    /* Add borders to table cells */
+    padding: 8px;
+    /* Add padding for better spacing */
+    text-align: left;
+    /* Align text to the left */
+  }
+
+  th {
+    background-color: #f2f2f2;
+    /* Light gray background for header */
+  }
+
+  .negative-sentiment {
+    background-color: rgba(255, 0, 0, 0.445);
+    /* Red background for negative sentiment */
+    color: white;
+    /* White text color for better readability */
+  }
+
+  main .bottom_data .reminders .task_list li .task_title p {
+    margin-left: 6px;
+  }
+
+  main .bottom_data .reminders .task_list li .bx {
+    cursor: pointer;
+  }
+
+  main .bottom_data .reminders .task_list li.completed {
+    border-left: 5px solid var(--success);
+  }
+
+  main .bottom_data .reminders .task_list li.uncomplete {
+    border-left: 5px solid var(--danger);
+  }
+
+  /* responsive */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 200px;
+    }
+
+    .content {
+      width: calc(100% - 60px);
+      left: 200px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .content nav form .form-input input {
+      display: none;
+    }
+
+    .content nav form .form-input button {
+      background-color: var(--dark-grey);
+    }
+
+    .content nav form .form-input input {
+      width: 100%;
+      display: block;
+    }
+
+    .content nav form.show .form-input button {
+      width: 36px;
+      height: 100%;
+      color: var(--light);
+      background-color: var(--dark);
+      border-radius: 0 36px 36px 0;
+    }
+
+    .content nav form.show~.notification,
+    .content nav form.show~.profile {
+      display: none;
+    }
+
+    main .cards {
+      grid-template-columns: 1fr;
+    }
+
+    main .bottom_data .header {
+      min-width: 340px;
+    }
+
+    main .bottom_data .orders table {
+      min-width: 340px;
+    }
+
+    main .bottom_data .reminders .task_list {
+      min-width: 340px;
+    }
+  }
+
+  /* ========Utality Classes Start=================== */
+  body.dark {
+    --light: #181a1e;
+    --grey: #25252c;
+    --dark: #fbfbfb;
+  }
+
+  body {
+    background-color: var(--grey);
+    overflow-x: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--light);
+    width: 260px;
+    height: 100%;
+    z-index: 2;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    box-shadow: 02px 0 10px var(--grey);
+    transition: all 0.3s ease-in;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebar.close {
+    width: 60px;
+  }
+
+  .sidebar .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    height: 56px;
+    color: var(--dark);
+    z-index: 1;
+    font-weight: 700;
+    margin: 1rem 0.5rem;
+  }
+
+  .sidebar .logo img {
+    width: 25%;
+    margin: 1rem 0;
+  }
+
+  .sidebar .logo span {
+    margin-left: 0.5rem;
+    color: var(--success);
+  }
+
+  .sidebar .side-menu {
+    width: 100%;
+    margin-top: 3rem;
+  }
+
+  .sidebar .side-menu li {
+    margin: 0.5rem 0;
+    height: 3rem;
+    background-color: transparent;
+  }
+
+  .sidebar .side-menu li.active {
+    border-left: var(--success) 6px solid;
+    background: var(--dark);
+    transition: all 0.3s ease-in;
+  }
+
+  .sidebar .side-menu li a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    color: var(--dark);
+  }
+
+  .sidebar .side-menu li.active a {
+    color: var(--success);
+  }
+
+  .sidebar.close .side-menu li a {
+    width: calc(80px - 12px);
+    transition: all 0.3s ease-in;
+  }
+
+  .sidebar .side-menu li a .bx {
+    min-width: calc(80px - 20px);
+    display: flex;
+    justify-content: center;
+    font-size: 1.7rem;
+  }
+
+  .sidebar.close .logo img {
+    width: 100%;
+  }
+
+  .side-menu li a.logout {
+    color: var(--danger);
+  }
+
+  .content {
+    position: relative;
+
+    transition: all 0.3s ease;
+  }
+
+  .sidebar.close~.content {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+
+  .content nav {
+    height: 56px;
+    background-color: var(--light);
+    padding: 2.5rem 1rem;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+
+  .content nav a {
+    color: var(--dark);
+  }
+
+  .content nav .bx.bx-menu {
+    cursor: pointer;
+    color: var(--dark);
+    font-size: 2rem;
+  }
+
+  .content nav form {
+    max-width: 600px;
+    width: 100%;
+    margin-right: auto;
+  }
+
+  .content nav form .form-input {
+    display: flex;
+    align-items: center;
+    height: 46px;
+  }
+
+  .content nav form .form-input input {
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background-color: var(--grey);
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    color: var(--dark);
+    width: 100%;
+    font-family: inherit;
+  }
+
+  .content nav form .form-input button {
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--success);
+    color: var(--light);
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+  }
+
+  .content nav form .form-input button .bx-search {
+    color: #fff;
+  }
+
+  .content nav .notification {
+    font-size: 20px;
+    position: relative;
+  }
+
+  .content nav .notification span {
+    position: absolute;
+    top: -6px;
+    width: 26px;
+    height: 20px;
+    background-color: var(--danger);
+    border-radius: 50%;
+    color: var(--light);
+    border: 2px solid var(--light);
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .quiz {
+    color: rgb(53, 53, 53);
+  }
+
+  .content nav .profile img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--dark-grey);
+  }
+</style>
+<script>
+  "use strict";
+
+  // links
+  const sideLInksEl = document.querySelectorAll(
+    ".sidebar .side-menu li a:not(.logout)",
+  );
+
+  sideLInksEl.forEach((links) => {
+    const li = links.parentElement;
+    links.addEventListener("click", () => {
+      sideLInksEl.forEach((i) => {
+        i.parentElement.classList.remove("active");
+      });
+      li.classList.add("active");
+    });
+  });
+
+  // sidebar
+  const menuBar = document.querySelector(".content nav .bx.bx-menu");
+  const sideBarEl = document.querySelector(".sidebar");
+
+  // menus
+  menuBar.addEventListener("click", () => {
+    sideBarEl.classList.toggle("close");
+  });
+
+  const searchbtn = document.querySelector(
+    ".content nav form .form-input button",
+  );
+  const searchIcon = document.querySelector(
+    ".content nav form .form-input button .bx",
+  );
+  const searchForm = document.querySelector(".content nav form");
+
+  searchbtn.addEventListener("click", function (e) {
+    if (window.innerWidth < 576) {
+      e.preventDefault;
+      searchForm.classList.toggle("show");
+
+      if (searchForm.classList.contains("show")) {
+        searchIcon.classList.replace("bx-search", "bx-x");
+      } else {
+        searchIcon.classList.replace("bx-x", "bx-search");
+      }
+    }
+  });
+
+  // resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth < 768) {
+      sideBarEl.classList.add("close");
+    } else {
+      sideBarEl.classList.remove("close");
+    }
+  });
+
+  // dark and light mode
+  const darkEl = document.querySelector(".side-menu ul li a");
+  const darkIcon = document.querySelector(".side-menu ul li .bx.bx-moon");
+
+  darkEl.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+      darkIcon.classList.replace("bx-moon", "bx-sun");
+    } else {
+      darkIcon.classList.replace("bx-sun", "bx-moon");
+    }
+  });
+</script>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   
+    <title>StudentSphere-About</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary menubar">
+    <div class="container-fluid navdiv">
+
+      <a class="navbar-brand"  >𝑆𝑡𝑢𝑑𝑒𝑛𝑡𝑆𝑝ℎ𝑒𝑟𝑒</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <!-- <img src="/assests/img/logo1.jpg" alt="" height="25" style="margin-top: 20px;"> -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" role="tab"
+              aria-controls="pills-home" aria-selected="true" href="/home">Home</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" type="a"
+              role="tab" aria-controls="pills-about" aria-selected="false"  href="/about">About Us!</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-project-tab" data-bs-toggle="pill" data-bs-target="#pills-project" type="a"
+              role="tab" aria-controls="pills-project" aria-selected="false" href="/project">Analysis</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-quiz-tab" data-bs-toggle="pill" data-bs-target="#pills-quiz" type="a"
+              role="tab" aria-controls="pills-quiz" aria-selected="false" href="/quiz">Quiz</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-forum-tab" data-bs-toggle="pill" data-bs-target="#pills-forum" type="a"
+              role="tab" aria-controls="pills-forum" aria-selected="false" href="/explore">Explore</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="a"
+              role="tab" aria-controls="pills-contact" aria-selected="false" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+    <span class="">
+      {% if session.get('username') %}
+          <span class="logdisplay">
+              <div class="logname" href="#">Welcome, {{ session['username'] }}!</div>
+          </span>
+      {% else %}
+          <span class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </span>
+      {% endif %}
+        </span>
+    <button class="navbutton">
+      
+
+      <a href="/" class="logout"><i class="bx bx-log-out-circle"></i>Logout</a>
+    </button>
+    <!-- <button class="navbutton"><a href="admin.html">Admin</a></button> -->
+  </nav>
+    <div class="aboutc container">
+        <h1 class="text-center"><b>About Us!</b></h1>
+        <p>
+          Welcome to Studentsphere, a safe haven on the internet where students can navigate the challenges of mental
+          health in the fast-paced world of today. Studentsphere was founded in 2024 as a result of a common desire to
+          empower and assist students who are coping with stress, anxiety, and other mental health issues.<br>
+
+          We at Studentsphere are aware of the particular struggles and demands that students have, such as meeting
+          social and academic expectations. Our main goal is to give students access to resources, community support,
+          and a secure, accepting, and caring environment.<br>
+
+        </p>
+
+        <h3><b> OUR APPROACH</b></h3>
+        <p><b>1. Supportive Resources:</b> Our selection of resources, which includes articles, manuals, and self-help
+          tools, is broad and designed to address a variety of mental health concerns that are frequently encountered by
+          students. Studentsphere is available to support you through any obstacles you may be facing, including
+          relationship problems, anxiety related to exams, and low self-esteem.<br><br>
+
+          <b> 2. Interactive Sessions:</b> Through our interactive sessions, students can participate in live workshops,
+          Q&A sessions, and conversations with peers, counsellors, and mental health specialists. In a safe space,
+          students can explore coping mechanisms and get advice during these sessions that promote empowerment,
+          understanding, and connection.<br><br>
+
+          <b>3. Participant Project:</b> Students are encouraged to express themselves in our Project Section by
+          discussing their individual struggles, victories, and experiences related to mental health. Students can shed
+          light on their personal challenges and victories through expressive writing, painting, and multimedia
+          projects, which promotes empathy, understanding, and connections within our community.<br><br>
+
+          <b>4. NLP Assessment:</b> We offer customised examinations using our state-of-the-art Natural Language
+          Processing (NLP) tool to determine the extent of students' mental health issues. Our NLP system guides
+          students towards appropriate support services, such as therapy or counselling, based on their unique
+          requirements and stress levels by analysing language patterns and emotional indicators.<br><br>
+
+          <b>5. Upcoming Projects:</b> In order to provide fresh and engaging interactive projects and activities
+          targeted at encouraging student resilience and mental wellness, we are constantly developing and growing our
+          platform. Keep an eye out for new features, partnerships, and activities that will enhance your path to
+          comprehensive well-being.<br><br></p>
+
+        <h3><b>Join Us:</b></h3>
+<p>
+        We at Studentsphere are here to help, advise, or just give you a sense of community. Come as you are. Let's work
+        together to eradicate the stigma associated with mental health issues and foster a climate of compassion,
+        understanding, and fortitude among students.
+
+        Come along on this life-changing journey towards mental health and wellbeing. You're never alone at
+        Studentsphere, and your well-being matters.<br><br><br>
+        </p>
+
+      </div>
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+  
+            <div class="col-sm-4">
+              <ul class="footer-info">
+  
+                <li>
+                  <h5>StudentSphere</h5>
+                  <p>Vellore Institute Of Technology, Chennai</p>
+                  <p>Kelambakkam-Vandalur road</p>
+                  <p>Phone Number: 7200910451</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <div class="social-media-icons">
+                <a href="https://www.instagram.com/your-instagram-handle" target="_blank" class="icon-instagram"></a>
+                <a href="https://twitter.com/your-twitter-handle" target="_blank" class="icon-twitter"></a>
+                <a href="https://www.facebook.com/your-facebook-page" target="_blank" class="icon-facebook"></a>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <ul class="help">
+                <li>
+                  <h5 class="text-white">HelpDesk:</h5>
+                  <p>044-20842000, 044-24800222</p>
+                  <p>Student.sphere@gmail.com</p>
+                </li>
+              </ul>
+            </div>
+  
+            <div class=" text-center copyr">
+              <p>&copy; StudentSphere. All rights reserved.</p>
+              <ul class="text-white">
+                <p>Visitors Count: <span id="visitorCount">0</span></p>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <script>
+          // Function to increment visitor count
+          function incrementVisitorCount() {
+            if (typeof (Storage) !== "undefined") {
+              if (localStorage.visitorCount) {
+                localStorage.visitorCount = Number(localStorage.visitorCount) + 1;
+              } else {
+                localStorage.visitorCount = 1;
+              }
+              document.getElementById("visitorCount").innerHTML = localStorage.visitorCount;
+            } else {
+              console.log("Sorry, your browser does not support web storage...");
+            }
+          }
+  
+          // Call the function when the page loads
+          window.onload = function () {
+            incrementVisitorCount();
+          };
+        </script>
+      </footer>
+</body>
+</html>

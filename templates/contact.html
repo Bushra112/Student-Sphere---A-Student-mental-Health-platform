@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS (jQuery and Popper.js are also required) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>StudentSphere-Contact</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary menubar">
+        <div class="container-fluid navdiv">
+    
+          <a class="navbar-brand"  >𝑆𝑡𝑢𝑑𝑒𝑛𝑡𝑆𝑝ℎ𝑒𝑟𝑒</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <!-- <img src="/assests/img/logo1.jpg" alt="" height="25" style="margin-top: 20px;"> -->
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" role="tab"
+                  aria-controls="pills-home" aria-selected="true" href="/home">Home</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" type="a"
+                  role="tab" aria-controls="pills-about" aria-selected="false"  href="/about">About Us!</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-project-tab" data-bs-toggle="pill" data-bs-target="#pills-project" type="a"
+                  role="tab" aria-controls="pills-project" aria-selected="false" href="/project">Analysis</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-quiz-tab" data-bs-toggle="pill" data-bs-target="#pills-quiz" type="a"
+                  role="tab" aria-controls="pills-quiz" aria-selected="false" href="/quiz">Quiz</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-forum-tab" data-bs-toggle="pill" data-bs-target="#pills-forum" type="a"
+                  role="tab" aria-controls="pills-forum" aria-selected="false" href="/explore">Explore</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="a"
+                  role="tab" aria-controls="pills-contact" aria-selected="false" href="/contact">Contact Us</a>
+              </li>
+            </ul>
+    
+    
+          </div>
+        </div>
+        <span class="">
+          {% if session.get('username') %}
+              <span class="logdisplay">
+                  <div class="logname" href="#">Welcome, {{ session['username'] }}!</div>
+              </span>
+          {% else %}
+              <span class="nav-item">
+                  <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+              </span>
+          {% endif %}
+            </span>
+        <button class="navbutton">
+          
+    
+          <a href="/" class="logout"><i class="bx bx-log-out-circle"></i>Logout</a>
+        </button>
+        <!-- <button class="navbutton"><a href="admin.html">Admin</a></button> -->
+      </nav>
+    <div class="container cont">
+        <h1 class="text-center"><b>Contact Us!</b></h1><br>
+        <p>Thank you for your interest in Studentsphere. We're here to support you in any way we can. Whether you have
+          questions, feedback, or simply want to connect, we're just a message away.</p><br>
+        <h3>Feedback and Suggestions:</h3>
+
+        <p>Your feedback and suggestions are invaluable to us as we strive to improve and enhance the Studentsphere
+          experience. If you have any feedback or suggestions for us, please don't hesitate to share them with us at
+          Studentsphere@gmail.com.</p>
+
+          <div class="feedback-box feedback">
+            <form action="/contact" method="POST">
+                <textarea id="feedbackInput" name="feedback" rows="4" placeholder="Enter your feedback here..." required></textarea>
+                <button type="submit" class="feedbackbtn">Submit</button>
+            </form>
+        </div>
+        
+        
+
+        
+
+        <div class="row dev">
+
+          <div class="col-sm-4">
+            <h3>Developers:</h3>
+            <p>Mohammed Sayeed - mohammedsayeed.a1@gmail.com</p>
+            <p>Bushra Sabreen - bushra.sabreen02@gmail.com</p>
+          </div>
+          <div class="col-sm-4">
+            <h3>Mentor:</h3>
+            <p>Sujithra@kanmani</p>
+          </div>
+
+          <div class="col-sm-4">
+          <h3>Address:</h3>
+          <p>Vellore Institute Of Technology, Chennai</p>
+          <p>Kelambakkam-Vandalur road</p>
+          <p>Phone Number: 7200910451</p>
+          </div>
+
+        </div>
+      </div>
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+  
+            <div class="col-sm-4">
+              <ul class="footer-info">
+  
+                <li>
+                  <h5>StudentSphere</h5>
+                  <p>Vellore Institute Of Technology, Chennai</p>
+                  <p>Kelambakkam-Vandalur road</p>
+                  <p>Phone Number: 7200910451</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <div class="social-media-icons">
+                <a href="https://www.instagram.com/your-instagram-handle" target="_blank" class="icon-instagram"></a>
+                <a href="https://twitter.com/your-twitter-handle" target="_blank" class="icon-twitter"></a>
+                <a href="https://www.facebook.com/your-facebook-page" target="_blank" class="icon-facebook"></a>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <ul class="help">
+                <li>
+                  <h5 class="text-white">HelpDesk:</h5>
+                  <p>044-20842000, 044-24800222</p>
+                  <p>Student.sphere@gmail.com</p>
+                </li>
+              </ul>
+            </div>
+  
+            <div class=" text-center copyr">
+              <p>&copy; StudentSphere. All rights reserved.</p>
+              <ul class="text-white">
+                <p>Visitors Count: <span id="visitorCount">0</span></p>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <script>
+          // Function to increment visitor count
+          function incrementVisitorCount() {
+            if (typeof (Storage) !== "undefined") {
+              if (localStorage.visitorCount) {
+                localStorage.visitorCount = Number(localStorage.visitorCount) + 1;
+              } else {
+                localStorage.visitorCount = 1;
+              }
+              document.getElementById("visitorCount").innerHTML = localStorage.visitorCount;
+            } else {
+              console.log("Sorry, your browser does not support web storage...");
+            }
+          }
+  
+          // Call the function when the page loads
+          window.onload = function () {
+            incrementVisitorCount();
+          };
+        </script>
+      </footer>
+</body>
+</html>
